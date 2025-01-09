@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Threshold percentage
+# Variables
 THRESHOLD=80
+ALERT_EMAIL="admin@example.com"
 
-# Email for alerts
-EMAIL="admin@example.com"
-
-# Check disk usage
-CURRENT_USAGE=$(df / | grep / | awk '{ print $5 }' | sed 's/%//g')
-
-# Compare current usage with threshold
-if [ "$CURRENT_USAGE" -gt "$THRESHOLD" ]; then
-    echo "Disk usage is above $THRESHOLD%. Current usage is ${CURRENT_USAGE}%." | mail -s "Disk Usage Alert" "$EMAIL"
-fi
+# Check disk usage for each mounted file system
+df -h | awk '{if(NR>1) print $5 " " $6}' | while read output; do
+    usage=$(echo $output | awk '{print $1}' | sed 's/%//')
+    mount_point=$(echo $output | awk '{print $2}')
+    if [ "$usage" -ge "$THRESHOLD" ]; then
+        echo "Disk usage on $mount_point has reached $usage%." | mail -s "Disk Usage Alert" "$ALERT_EMAIL"
+    fi
+done
