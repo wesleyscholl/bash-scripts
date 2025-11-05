@@ -2,6 +2,9 @@
 
 A comprehensive collection of production-ready Bash scripts for DevOps engineers, system administrators, and automation enthusiasts. These scripts handle everything from system monitoring and backups to Kubernetes management and CI/CD integrations.
 
+<img width="700" alt="bash" src="https://github.com/user-attachments/assets/2bd21a84-eac3-4309-9404-3b21bf31ac26" />
+
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
 
