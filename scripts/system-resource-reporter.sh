@@ -14,7 +14,6 @@ OUTPUT_FORMAT="table"
 # Color codes for better output
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
@@ -183,7 +182,7 @@ format_table() {
         echo -e "${GREEN}┌─ Disk Usage ─────────────────────────────────────────────────┐${NC}"
         printf "  %-20s %-10s %-10s %-10s %-10s %-15s\n" "Filesystem" "Size" "Used" "Avail" "Use%" "Mounted"
         echo "  ────────────────────────────────────────────────────────────────"
-        get_disk_info | while IFS='|' read -r label fs size used avail usage mount; do
+        get_disk_info | while IFS='|' read -r _ fs size used avail usage mount; do
             printf "  %-20s %-10s %-10s %-10s %-10s %-15s\n" "$fs" "$size" "$used" "$avail" "$usage" "$mount"
         done
         echo -e "${GREEN}└──────────────────────────────────────────────────────────────┘${NC}"
@@ -195,7 +194,7 @@ format_table() {
         echo -e "${GREEN}┌─ Network Statistics ─────────────────────────────────────────┐${NC}"
         printf "  %-20s %-15s %-15s\n" "Interface" "RX Bytes" "TX Bytes"
         echo "  ────────────────────────────────────────────────────────────────"
-        get_network_info | while IFS='|' read -r label iface rx tx; do
+        get_network_info | while IFS='|' read -r _ iface rx tx; do
             printf "  %-20s %-15s %-15s\n" "$iface" "$rx" "$tx"
         done
         echo -e "${GREEN}└──────────────────────────────────────────────────────────────┘${NC}"
@@ -274,7 +273,7 @@ format_json() {
         fi
         echo "  \"disk\": ["
         local first=true
-        get_disk_info | while IFS='|' read -r label fs size used avail usage mount; do
+        get_disk_info | while IFS='|' read -r _ fs size used avail usage mount; do
             if [ "$first" = true ]; then
                 first=false
             else
@@ -302,7 +301,7 @@ format_json() {
         fi
         echo "  \"network\": ["
         local first=true
-        get_network_info | while IFS='|' read -r label iface rx tx; do
+        get_network_info | while IFS='|' read -r _ iface rx tx; do
             if [ "$first" = true ]; then
                 first=false
             else
@@ -347,7 +346,7 @@ format_csv() {
         if [ "$SHOW_CPU" = false ] && [ "$SHOW_MEMORY" = false ]; then
             echo "Filesystem,Size,Used,Available,Usage,Mounted"
         fi
-        get_disk_info | while IFS='|' read -r label fs size used avail usage mount; do
+        get_disk_info | while IFS='|' read -r _ fs size used avail usage mount; do
             echo "$fs,$size,$used,$avail,$usage,$mount"
         done
     fi
@@ -356,7 +355,7 @@ format_csv() {
         if [ "$SHOW_CPU" = false ] && [ "$SHOW_MEMORY" = false ] && [ "$SHOW_DISK" = false ]; then
             echo "Interface,RX_Bytes,TX_Bytes"
         fi
-        get_network_info | while IFS='|' read -r label iface rx tx; do
+        get_network_info | while IFS='|' read -r _ iface rx tx; do
             echo "$iface,$rx,$tx"
         done
     fi

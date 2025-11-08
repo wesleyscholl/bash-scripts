@@ -6,7 +6,6 @@
 # Default configuration
 EMAIL_ENABLED=false
 EMAIL_RECIPIENT=""
-NOTIFICATION_METHOD="console"
 FOLLOW_MODE=true
 
 # Color codes for better output
@@ -68,13 +67,12 @@ send_email() {
 # Function to process log line
 process_log_line() {
     local line="$1"
-    local matched=false
     
     # Check if line matches any keyword
     for keyword in "${KEYWORDS[@]}"; do
         if echo "$line" | grep -q "$keyword"; then
-            matched=true
-            local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+            local timestamp
+            timestamp=$(date '+%Y-%m-%d %H:%M:%S')
             
             # Display alert to console
             echo -e "${RED}[ALERT]${NC} [$timestamp] Keyword '${YELLOW}$keyword${NC}' found:"
