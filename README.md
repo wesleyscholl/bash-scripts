@@ -63,6 +63,8 @@ This repository contains battle-tested Bash scripts designed to automate common 
 | `splunk-search.sh` | Performs automated Splunk log searches |
 | `check-ssl-expiry.sh` | Monitors SSL certificate expiration dates |
 | `docker-log-monitor.sh` | Monitors and analyzes Docker container logs |
+| `log-monitor.sh` | Monitors log files for keywords with real-time alerts and email notifications |
+| `system-resource-reporter.sh` | Generates comprehensive system resource reports in multiple formats |
 
 ### Backup & Recovery
 
@@ -151,6 +153,38 @@ Each script includes inline documentation and usage examples. Run any script wit
 ./kubectl-namespace-cleanup.sh --dry-run
 ```
 
+### Example: Log Monitoring
+
+```bash
+# Monitor log file for ERROR and WARNING keywords in real-time
+./log-monitor.sh /var/log/application.log ERROR WARNING
+
+# Monitor with email notifications
+./log-monitor.sh /var/log/syslog CRITICAL --email admin@example.com
+
+# Scan existing log content (no real-time monitoring)
+./log-monitor.sh /var/log/app.log ERROR --static
+```
+
+### Example: System Resource Reporting
+
+```bash
+# Generate full system resource report
+./system-resource-reporter.sh
+
+# Export report to file
+./system-resource-reporter.sh --output /tmp/system-report.txt
+
+# Show only CPU and memory information
+./system-resource-reporter.sh --cpu-only --memory-only
+
+# Generate JSON report
+./system-resource-reporter.sh --format json --output report.json
+
+# Export CSV format
+./system-resource-reporter.sh --format csv --output system-stats.csv
+```
+
 ## 📝 Configuration
 
 Many scripts support configuration through:
@@ -192,14 +226,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## � Project Status
 
 **Current State:** Production-grade DevOps automation toolkit with enterprise deployment capabilities  
-**Script Collection:** 25+ battle-tested automation scripts covering system administration, CI/CD, and monitoring  
+**Script Collection:** 27+ battle-tested automation scripts covering system administration, CI/CD, and monitoring  
 **Achievement:** Comprehensive infrastructure automation suite used in production environments
 
 This collection represents years of DevOps engineering experience distilled into reusable, production-ready automation scripts. Each script is designed with enterprise reliability, security best practices, and comprehensive error handling.
 
 ### Technical Achievements
 
-- ✅ **Production-Ready Scripts:** 25+ scripts battle-tested in real production environments across multiple organizations
+- ✅ **Production-Ready Scripts:** 27+ scripts battle-tested in real production environments across multiple organizations
 - ✅ **Comprehensive Coverage:** Full automation suite spanning system administration, CI/CD, monitoring, and container management
 - ✅ **Enterprise Security:** Built-in security best practices with credential management and audit logging
 - ✅ **Cross-Platform Compatibility:** POSIX-compliant scripts tested on Linux, macOS, and cloud environments
