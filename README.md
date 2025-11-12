@@ -1,5 +1,7 @@
 # 🚀 Bash Scripts Collection
 
+**Status**: Production-ready automation toolkit for DevOps and system administration - battle-tested scripts for infrastructure management workflows.
+
 A comprehensive collection of production-ready Bash scripts for DevOps engineers, system administrators, and automation enthusiasts. These scripts handle everything from system monitoring and backups to Kubernetes management and CI/CD integrations.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
