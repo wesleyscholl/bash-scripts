@@ -81,12 +81,26 @@ teardown() {
 }
 
 @test "CPU usage can be calculated" {
-    run top -bn1
+    # top command has different flags on macOS vs Linux
+    if top -l 1 &>/dev/null; then
+        # macOS
+        run top -l 1
+    else
+        # Linux
+        run top -bn1
+    fi
     [ "$status" -eq 0 ]
 }
 
 @test "memory usage can be calculated" {
-    run free 2>/dev/null || run vm_stat
+    # Use vm_stat on macOS, free on Linux
+    if command -v free &>/dev/null; then
+        run free
+    elif command -v vm_stat &>/dev/null; then
+        run vm_stat
+    else
+        skip "no memory command available"
+    fi
     [ "$status" -eq 0 ]
 }
 

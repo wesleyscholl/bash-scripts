@@ -82,7 +82,10 @@ setup() {
 }
 
 @test "script sends notification to Slack" {
-    run grep -q "curl -X POST.*SLACK_WEBHOOK_URL" "$SCRIPT_PATH"
+    # Check for curl to Slack webhook (URL can be on different line)
+    run grep -E "SLACK_WEBHOOK_URL" "$SCRIPT_PATH"
+    [ "$status" -eq 0 ]
+    run grep -E "curl.*-X POST" "$SCRIPT_PATH"
     [ "$status" -eq 0 ]
 }
 

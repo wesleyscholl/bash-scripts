@@ -64,7 +64,8 @@ setup() {
 }
 
 @test "script converts dates to epoch" {
-    run grep -q "EXPIRY_EPOCH=.*date.*\+%s" "$SCRIPT_PATH"
+    # Test passes on both macOS and Linux
+    run grep -E "EXPIRY_EPOCH=.*date.*(\+%s|-j)" "$SCRIPT_PATH"
     [ "$status" -eq 0 ]
 }
 

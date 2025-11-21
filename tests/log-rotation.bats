@@ -91,7 +91,12 @@ teardown() {
 
 @test "can get file size" {
     echo "test" > "$TEST_LOG"
-    run stat -c%s "$TEST_LOG" 2>/dev/null || run stat -f%z "$TEST_LOG"
+    # Use -f on macOS, -c on Linux
+    if stat -f%z "$TEST_LOG" &>/dev/null; then
+        run stat -f%z "$TEST_LOG"
+    else
+        run stat -c%s "$TEST_LOG"
+    fi
     [ "$status" -eq 0 ]
 }
 

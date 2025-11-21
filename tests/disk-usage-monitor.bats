@@ -65,7 +65,7 @@ teardown() {
 }
 
 @test "mount points are identified correctly" {
-    run df -h | awk '{if(NR>1) print $6}'
+    run sh -c "df -h | awk '{if(NR>1) print \$6}' | head -1"
     [ "$status" -eq 0 ]
     [ -n "$output" ]
 }

@@ -66,7 +66,7 @@ teardown() {
 }
 
 @test "script accepts help flag" {
-    run grep -q "\-h|\-\-help" "$SCRIPT_PATH"
+    run grep -E "(\-h|--help)" "$SCRIPT_PATH"
     [ "$status" -eq 0 ]
 }
 

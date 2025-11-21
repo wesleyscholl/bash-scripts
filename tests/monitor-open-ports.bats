@@ -64,7 +64,14 @@ teardown() {
 }
 
 @test "awk can process network output" {
-    output=$(netstat -tuln 2>/dev/null | awk 'NR>2 {print $4}' | head -1) || \
-    output=$(ss -tuln 2>/dev/null | awk 'NR>2 {print $5}' | head -1)
-    [ "$status" -eq 0 ]
+    # Test awk processing of network commands
+    if command -v netstat &>/dev/null; then
+        run sh -c "netstat -tuln 2>/dev/null | awk 'NR>2 {print \$4}' | head -1"
+    elif command -v ss &>/dev/null; then
+        run sh -c "ss -tuln 2>/dev/null | awk 'NR>2 {print \$5}' | head -1"
+    else
+        skip "no network command available"
+    fi
+    # Just check command runs, output may be empty
+    [ "$status" -eq 0 ] || [ "$status" -eq 141 ]
 }
