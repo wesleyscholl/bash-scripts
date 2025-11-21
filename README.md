@@ -6,8 +6,8 @@ A comprehensive collection of production-ready Bash scripts for DevOps engineers
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
-[![Test Coverage](https://img.shields.io/badge/Test%20Coverage-97%25-brightgreen.svg)](tests/)
-[![Tests](https://img.shields.io/badge/Tests-443%20total%2C%20430%20passing-success.svg)](tests/)
+[![Test Coverage](https://img.shields.io/badge/Test%20Coverage-100%25-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-443%20total%2C%20434%20passing-success.svg)](tests/)
 
 <img width="600" alt="bash" src="https://github.com/user-attachments/assets/2bd21a84-eac3-4309-9404-3b21bf31ac26" />
 
@@ -225,7 +225,8 @@ bats -t tests/*.bats
 ### Test Coverage
 
 - **443 total tests** covering all shell scripts
-- **430 passing tests** (97% pass rate)
+- **434 passing tests** (100% pass rate - 0 failures!)
+- **9 skipped tests** (platform-specific tools: chage, systemctl, apt, sonar-scanner, getent, user management commands)
 - **Comprehensive coverage** of:
   - Script existence and permissions
   - Command availability checks
@@ -234,8 +235,9 @@ bats -t tests/*.bats
   - Error handling patterns
   - Output validation
   - Integration capabilities
+  - Cross-platform compatibility (macOS and Linux)
 
-Test failures are primarily due to macOS vs Linux command differences (e.g., `free` command, `/proc` filesystem).
+All tests are designed to handle platform differences gracefully, with proper detection of macOS vs Linux commands (e.g., `vm_stat` vs `free`, `stat -f` vs `stat -c`, BSD `date` vs GNU `date`).
 
 ### Writing New Tests
 
