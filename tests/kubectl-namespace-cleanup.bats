@@ -24,7 +24,7 @@ setup() {
 }
 
 @test "script prompts for confirmation" {
-    run grep -q "read -p" "$SCRIPT_PATH"
+    run grep -q "read -rp" "$SCRIPT_PATH"
     [ "$status" -eq 0 ]
 }
 

@@ -54,7 +54,7 @@ teardown() {
 }
 
 @test "script checks git pull status" {
-    run grep -q "if \[ \$? -eq 0 \]" "$SCRIPT_PATH"
+    run grep -q "if git pull" "$SCRIPT_PATH"
     [ "$status" -eq 0 ]
 }
 

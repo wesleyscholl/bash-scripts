@@ -64,7 +64,7 @@ teardown() {
 }
 
 @test "script checks rsync exit status" {
-    run grep -q "if \[ \$? -eq 0 \]" "$SCRIPT_PATH"
+    run grep -q "if rsync" "$SCRIPT_PATH"
     [ "$status" -eq 0 ]
 }
 

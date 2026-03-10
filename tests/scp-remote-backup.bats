@@ -80,6 +80,8 @@ teardown() {
 
 @test "can create tar archive" {
     echo "test" > "${TEST_DIR}/test.txt"
-    run tar -czf "${TEST_DIR}/test.tar.gz" -C "$TEST_DIR" .
+    local archive="/tmp/bats_scp_test_$$.tar.gz"
+    run tar -czf "$archive" -C "$TEST_DIR" .
+    rm -f "$archive"
     [ "$status" -eq 0 ]
 }

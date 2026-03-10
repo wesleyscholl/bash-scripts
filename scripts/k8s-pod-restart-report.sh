@@ -39,7 +39,6 @@ else
 fi
 
 echo "Pods with restart count >= $THRESHOLD"
-findings=0
 
 "${cmd[@]}" | awk -v t="$THRESHOLD" '
 {

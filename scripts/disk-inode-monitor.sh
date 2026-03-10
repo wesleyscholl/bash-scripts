@@ -30,8 +30,6 @@ if ! command -v df >/dev/null 2>&1; then
     exit 1
 fi
 
-ALERT=0
-
 echo "Filesystem inode usage report (threshold: ${THRESHOLD}%)"
 
 df -Pi | awk 'NR>1 {print $1, $5, $6}' | while read -r fs usage mount; do
