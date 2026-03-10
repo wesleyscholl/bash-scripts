@@ -1,0 +1,11 @@
+# ShellCheck configuration for bash-scripts
+# https://www.shellcheck.net/wiki/Ignore
+
+# All scripts in this repo target bash
+shell=bash
+
+# Only fail on actual errors (not style warnings) — tighten to 'warning' over time
+severity=error
+
+# SC1091: Not following source — external files can't be statically analysed
+disable=SC1091

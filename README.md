@@ -4,6 +4,7 @@
 
 A comprehensive collection of production-ready Bash scripts for DevOps engineers, system administrators, and automation enthusiasts. These scripts handle everything from system monitoring and backups to Kubernetes management and CI/CD integrations.
 
+[![CI](https://github.com/wesleyscholl/bash-scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/wesleyscholl/bash-scripts/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
 [![Test Coverage](https://img.shields.io/badge/Test%20Coverage-100%25-brightgreen.svg)](tests/)

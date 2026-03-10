@@ -1,0 +1,37 @@
+# macOS artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor artifacts
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.iml
+
+# Log files
+*.log
+logs/
+
+# Test output
+test-results/
+coverage/
+/tmp/bats_test_*
+
+# Credentials and secrets — never commit these
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# OS temp files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
