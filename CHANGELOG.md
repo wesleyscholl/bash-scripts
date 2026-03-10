@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `scripts/dns-lookup-check.sh` — verify DNS resolution for hostnames with optional expected-IP validation
+- `scripts/network-latency-report.sh` — ping-based latency monitor with configurable count and threshold
+- `scripts/swap-usage-monitor.sh` — alert when swap usage percentage exceeds a threshold
+- `scripts/mysql-slow-query-report.sh` — parse MySQL slow query log and rank top offenders by query time
+- `scripts/disk-throughput-test.sh` — dd-based sequential read/write benchmark for a target directory
+- `scripts/kernel-parameter-audit.sh` — audit sysctl parameters against a hardened security baseline
+- `scripts/certificate-renewal-check.sh` — check TLS certificates (files or live hosts) for expiry status
+- `scripts/large-file-finder.sh` — find the largest files in a directory tree with human-readable output
+- `scripts/uptime-reporter.sh` — report system uptime, boot time, load averages, and recent reboots
+- `scripts/log-error-summary.sh` — count and rank error patterns in log files for rapid incident triage
+- Corresponding BATS test files for all 10 scripts above (100 new tests, 568 total)
+
+## [1.3.0] - 2026-06-28
+
+### Added
 - CI pipeline (`.github/workflows/ci.yml`) — ShellCheck lint + BATS test suite on every push and PR
 - `CONTRIBUTING.md` — contributor guide with script style guide, test requirements, and PR workflow
 - `SECURITY.md` — vulnerability reporting policy and responsible disclosure guidelines

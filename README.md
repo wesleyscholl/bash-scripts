@@ -8,7 +8,7 @@ A comprehensive collection of production-ready Bash scripts for DevOps engineers
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Shell](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
 [![Test Coverage](https://img.shields.io/badge/Test%20Coverage-100%25-brightgreen.svg)](tests/)
-[![Tests](https://img.shields.io/badge/Tests-468%20total-success.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-568%20total-success.svg)](tests/)
 
 <img width="600" alt="bash" src="https://github.com/user-attachments/assets/2bd21a84-eac3-4309-9404-3b21bf31ac26" />
 
@@ -65,6 +65,9 @@ To address these gaps, the recent expansion adds 25 new scripts and 25 matching 
 | `service-status-check.sh` | Checks systemd service active/enabled status |
 | `env-var-audit.sh` | Audits required environment variables and flags missing values |
 | `process-zombie-report.sh` | Reports zombie processes for host hygiene checks |
+| `swap-usage-monitor.sh` | Monitors swap usage and alerts when it exceeds a threshold |
+| `uptime-reporter.sh` | Reports system uptime, boot time, and recent reboot history |
+| `log-error-summary.sh` | Counts and ranks error patterns in a log file for rapid triage |
 
 ### DevOps & CI/CD
 
@@ -94,6 +97,8 @@ To address these gaps, the recent expansion adds 25 new scripts and 25 matching 
 | `api-latency-monitor.sh` | Measures endpoint latency and alerts on threshold breaches |
 | `tcp-connectivity-check.sh` | Validates TCP connectivity to host and port targets |
 | `cpu-load-watch.sh` | Alerts when 1-minute load average exceeds threshold |
+| `dns-lookup-check.sh` | Verifies DNS resolution for hostnames and detects failures or IP mismatches |
+| `network-latency-report.sh` | Pings hosts and reports round-trip latency with threshold alerting |
 
 ### Backup & Recovery
 
@@ -131,6 +136,8 @@ To address these gaps, the recent expansion adds 25 new scripts and 25 matching 
 | `cron-job-audit.sh` | Audits cron definitions for risky patterns and permission issues |
 | `ssh-config-audit.sh` | Audits SSH daemon hardening settings in sshd_config |
 | `file-permission-audit.sh` | Finds world-writable files under a target directory |
+| `kernel-parameter-audit.sh` | Checks critical sysctl parameters against a secure baseline |
+| `certificate-renewal-check.sh` | Checks TLS certificates for expiry and outputs actionable renewal status |
 
 ### Git & Developer Productivity
 
@@ -144,6 +151,9 @@ To address these gaps, the recent expansion adds 25 new scripts and 25 matching 
 |--------|-------------|
 | `random-password-generator.sh` | Generates secure random passwords |
 | `url-encode.sh` | URL-encodes strings for safe query and API usage |
+| `large-file-finder.sh` | Finds the largest files in a directory tree, sorted by size |
+| `disk-throughput-test.sh` | Benchmarks sequential read and write throughput on a directory |
+| `mysql-slow-query-report.sh` | Parses MySQL slow query logs and reports the top offenders by query time |
 
 ## 🔧 Prerequisites
 
@@ -297,7 +307,7 @@ bats -t tests/*.bats
 
 ### Test Coverage
 
-- **468 total tests** covering all shell scripts
+- **568 total tests** covering all shell scripts
 - **25 new tests** added for security, reliability, and developer-workflow scripts
 - **Platform-aware skips** remain for tool-specific/system-specific test cases
 - **Comprehensive coverage** of:
@@ -366,14 +376,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## � Project Status
 
 **Current State:** Production-grade DevOps automation toolkit with enterprise deployment capabilities  
-**Script Collection:** 59+ battle-tested automation scripts covering system administration, CI/CD, security, reliability, and monitoring  
+**Script Collection:** 69+ battle-tested automation scripts covering system administration, CI/CD, security, reliability, and monitoring  
 **Achievement:** Comprehensive infrastructure automation suite used in production environments
 
 This collection represents years of DevOps engineering experience distilled into reusable, production-ready automation scripts. Each script is designed with enterprise reliability, security best practices, and comprehensive error handling.
 
 ### Technical Achievements
 
-- ✅ **Production-Ready Scripts:** 59+ scripts battle-tested in real production environments across multiple organizations
+- ✅ **Production-Ready Scripts:** 69+ scripts battle-tested in real production environments across multiple organizations
 - ✅ **Comprehensive Coverage:** Full automation suite spanning system administration, CI/CD, monitoring, and container management
 - ✅ **Enterprise Security:** Built-in security best practices with credential management and audit logging
 - ✅ **Cross-Platform Compatibility:** POSIX-compliant scripts tested on Linux, macOS, and cloud environments
