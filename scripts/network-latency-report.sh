@@ -26,12 +26,12 @@ Examples:
   $(basename "$0") 8.8.8.8 1.1.1.1
   $(basename "$0") --count 10 --threshold 100 google.com
 EOF
-    exit 0
+    exit "${1:-0}"
 }
 
 if [[ $# -eq 0 ]]; then
     echo "Error: at least one host is required."
-    show_usage
+    show_usage 2
 fi
 
 HOSTS=()
@@ -52,14 +52,14 @@ while [[ $# -gt 0 ]]; do
                 exit 1
             fi
             shift 2 ;;
-        -*) echo "Error: unknown option '$1'"; show_usage ;;
+        -*) echo "Error: unknown option '$1'"; show_usage 2 ;;
         *) HOSTS+=("$1"); shift ;;
     esac
 done
 
 if [[ ${#HOSTS[@]} -eq 0 ]]; then
     echo "Error: at least one host is required."
-    show_usage
+    show_usage 2
 fi
 
 if ! command -v ping >/dev/null 2>&1; then

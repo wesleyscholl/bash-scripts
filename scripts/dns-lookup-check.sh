@@ -25,12 +25,12 @@ Examples:
   $(basename "$0") example.com api.example.com
   $(basename "$0") --expected 93.184.216.34 example.com
 EOF
-    exit 0
+    exit "${1:-0}"
 }
 
 if [[ $# -eq 0 ]]; then
     echo "Error: at least one hostname is required."
-    show_usage
+    show_usage 2
 fi
 
 HOSTNAMES=()
@@ -38,14 +38,14 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         -h|--help) show_usage ;;
         -e|--expected) EXPECTED_IP="$2"; shift 2 ;;
-        -*) echo "Error: unknown option '$1'"; show_usage ;;
+        -*) echo "Error: unknown option '$1'"; show_usage 2 ;;
         *) HOSTNAMES+=("$1"); shift ;;
     esac
 done
 
 if [[ ${#HOSTNAMES[@]} -eq 0 ]]; then
     echo "Error: at least one hostname is required."
-    show_usage
+    show_usage 2
 fi
 
 if ! command -v dig >/dev/null 2>&1 && ! command -v nslookup >/dev/null 2>&1 && ! command -v host >/dev/null 2>&1; then

@@ -27,12 +27,12 @@ Examples:
   $(basename "$0") /etc/ssl/certs/my.crt
   $(basename "$0") --warn-days 60 --crit-days 14 example.com:443 api.example.com
 EOF
-    exit 0
+    exit "${1:-0}"
 }
 
 if [[ $# -eq 0 ]]; then
     echo "Error: at least one certificate file or host is required."
-    show_usage
+    show_usage 2
 fi
 
 TARGETS=()
@@ -47,14 +47,14 @@ while [[ $# -gt 0 ]]; do
             CRIT_DAYS="$2"
             if ! [[ "$CRIT_DAYS" =~ ^[0-9]+$ ]]; then echo "Error: crit-days must be an integer"; exit 1; fi
             shift 2 ;;
-        -*) echo "Error: unknown option '$1'"; show_usage ;;
+        -*) echo "Error: unknown option '$1'"; show_usage 2 ;;
         *) TARGETS+=("$1"); shift ;;
     esac
 done
 
 if [[ ${#TARGETS[@]} -eq 0 ]]; then
     echo "Error: at least one certificate file or host is required."
-    show_usage
+    show_usage 2
 fi
 
 if ! command -v openssl >/dev/null 2>&1; then

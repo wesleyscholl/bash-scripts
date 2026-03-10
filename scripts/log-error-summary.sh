@@ -26,12 +26,12 @@ Examples:
   $(basename "$0") --top 5 --pattern "OOM" /var/log/kern.log
   $(basename "$0") /var/log/app/app.log
 EOF
-    exit 0
+    exit "${1:-0}"
 }
 
 if [[ $# -eq 0 ]]; then
     echo "Error: log file is required."
-    show_usage
+    show_usage 2
 fi
 
 EXTRA_PATTERNS=()
@@ -50,14 +50,14 @@ while [[ $# -gt 0 ]]; do
         -p|--pattern)
             EXTRA_PATTERNS+=("$2")
             shift 2 ;;
-        -*) echo "Error: unknown option '$1'"; show_usage ;;
+        -*) echo "Error: unknown option '$1'"; show_usage 2 ;;
         *) LOG_FILE="$1"; shift ;;
     esac
 done
 
 if [[ -z "$LOG_FILE" ]]; then
     echo "Error: log file is required."
-    show_usage
+    show_usage 2
 fi
 
 if [[ ! -f "$LOG_FILE" ]]; then

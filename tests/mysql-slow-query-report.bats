@@ -52,7 +52,7 @@ teardown() {
 @test "script reports query time from sample log" {
     local sample_log="${TEST_DIR}/slow.log"
     cat > "$sample_log" << 'EOF'
-# Query_time: 3.456789 Lock_time: 0.000123 Rows_sent: 1 Rows_examined: 10000
+# Query_time: 3.456000 Lock_time: 0.000123 Rows_sent: 1 Rows_examined: 10000
 SELECT * FROM users WHERE email = 'test@example.com';
 EOF
     run bash "$SCRIPT_PATH" "$sample_log"

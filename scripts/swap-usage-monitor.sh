@@ -51,8 +51,7 @@ get_swap_info() {
         fi
     else
         # macOS fallback via vm_stat
-        local pagesize total_pages free_pages
-        pagesize=$(getconf PAGESIZE 2>/dev/null || echo 4096)
+        local total_pages free_pages
         total_pages=$(sysctl -n vm.swapusage 2>/dev/null | awk '{print $3}' | tr -d 'M' || echo 0)
         free_pages=$(sysctl -n vm.swapusage  2>/dev/null | awk '{print $7}' | tr -d 'M' || echo 0)
         echo "$total_pages $free_pages 0"

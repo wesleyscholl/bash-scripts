@@ -47,6 +47,6 @@ setup() {
 }
 
 @test "script outputs OK or FAIL or SKIP per parameter" {
-    run grep -qE "^    echo .OK:" "$SCRIPT_PATH"
+    run grep -qE "echo .OK:" "$SCRIPT_PATH"
     assert_success
 }

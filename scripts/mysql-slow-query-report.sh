@@ -25,12 +25,12 @@ Examples:
   $(basename "$0") /var/log/mysql/mysql-slow.log
   $(basename "$0") --top 5 --min-time 2 /var/log/mysql/mysql-slow.log
 EOF
-    exit 0
+    exit "${1:-0}"
 }
 
 if [[ $# -eq 0 ]]; then
     echo "Error: slow query log file is required."
-    show_usage
+    show_usage 2
 fi
 
 while [[ $# -gt 0 ]]; do
@@ -50,14 +50,14 @@ while [[ $# -gt 0 ]]; do
                 exit 1
             fi
             shift 2 ;;
-        -*) echo "Error: unknown option '$1'"; show_usage ;;
+        -*) echo "Error: unknown option '$1'"; show_usage 2 ;;
         *) LOG_FILE="$1"; shift ;;
     esac
 done
 
 if [[ -z "${LOG_FILE:-}" ]]; then
     echo "Error: slow query log file is required."
-    show_usage
+    show_usage 2
 fi
 
 if [[ ! -f "$LOG_FILE" ]]; then
@@ -76,7 +76,8 @@ echo "  Min time:   ${MIN_TIME}s"
 echo "  Top N:      $TOP_N"
 echo "-----------------------------------------------------------"
 
-total=$(grep -c "^# Query_time:" "$LOG_FILE" 2>/dev/null || echo 0)
+total=0
+total=$(grep -c "^# Query_time:" "$LOG_FILE" 2>/dev/null) || total=0
 echo "Total slow queries in log: $total"
 echo ""
 
