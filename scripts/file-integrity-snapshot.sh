@@ -41,7 +41,9 @@ if [[ "$MODE" == "create" ]]; then
     fi
 
     if [[ -d "$TARGET_PATH" ]]; then
-        find "$TARGET_PATH" -type f ! -name "$(basename "$MANIFEST_FILE")" -print0 | sort -z | xargs -0 sha256sum > "$MANIFEST_FILE"
+        _tmpfile=$(mktemp)
+        find "$TARGET_PATH" -type f ! -name "$(basename "$MANIFEST_FILE")" -print0 | sort -z | xargs -0 sha256sum > "$_tmpfile"
+        mv "$_tmpfile" "$MANIFEST_FILE"
     else
         sha256sum "$TARGET_PATH" > "$MANIFEST_FILE"
     fi

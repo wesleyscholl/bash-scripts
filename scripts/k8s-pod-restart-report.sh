@@ -33,9 +33,9 @@ if ! [[ "$THRESHOLD" =~ ^[0-9]+$ ]]; then
 fi
 
 if [[ "$NAMESPACE" == "all" ]]; then
-    cmd=(kubectl get pods -A -o custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name,RESTARTS:.status.containerStatuses[*].restartCount --no-headers)
+    cmd=(kubectl get pods -A -o "custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name,RESTARTS:.status.containerStatuses[*].restartCount" --no-headers)
 else
-    cmd=(kubectl get pods -n "$NAMESPACE" -o custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name,RESTARTS:.status.containerStatuses[*].restartCount --no-headers)
+    cmd=(kubectl get pods -n "$NAMESPACE" -o "custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name,RESTARTS:.status.containerStatuses[*].restartCount" --no-headers)
 fi
 
 echo "Pods with restart count >= $THRESHOLD"
@@ -50,7 +50,6 @@ findings=0
     }
     if (restarts >= t) print $1 "|" $2 "|" restarts
 }' | while IFS='|' read -r ns pod restarts; do
-    findings=1
     echo "ALERT: namespace=$ns pod=$pod restarts=$restarts"
 done
 

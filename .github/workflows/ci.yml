@@ -23,7 +23,7 @@ jobs:
       - name: Lint all scripts
         run: |
           echo "Running ShellCheck on all scripts..."
-          find scripts/ -name "*.sh" -type f | sort | xargs shellcheck
+          find scripts/ -name "*.sh" -type f | sort | xargs shellcheck --severity=warning
 
   test:
     name: BATS Test Suite

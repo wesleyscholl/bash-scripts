@@ -9,10 +9,9 @@ cd "$REPO_DIR" || { echo "Repository directory not found."; exit 1; }
 
 # Pull the latest code
 echo "Pulling latest code from repository."
-git pull origin main
 
 # Check if the pull was successful
-if [ $? -eq 0 ]; then
+if git pull origin main; then
     echo "Code updated successfully."
     # Restart the application service
     echo "Restarting $SERVICE service."

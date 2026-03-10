@@ -4,8 +4,8 @@
 # All scripts in this repo target bash
 shell=bash
 
-# Only fail on actual errors (not style warnings) — tighten to 'warning' over time
-severity=error
+# Only fail on warnings and above (not style/info notes) — tighten to 'style' over time
+severity=warning
 
 # SC1091: Not following source — external files can't be statically analysed
 disable=SC1091

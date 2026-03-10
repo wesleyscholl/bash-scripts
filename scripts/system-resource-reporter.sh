@@ -59,10 +59,10 @@ EOF
 
 # Function to get CPU information
 get_cpu_info() {
-    local cpu_model=$(grep "model name" /proc/cpuinfo 2>/dev/null | head -1 | cut -d: -f2 | sed 's/^[ \t]*//')
-    local cpu_cores=$(grep -c "^processor" /proc/cpuinfo 2>/dev/null)
-    local cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{printf "%.2f", 100 - $1}')
-    local load_avg=$(uptime | awk -F'load average:' '{print $2}' | sed 's/^[ \t]*//')
+    local cpu_model; cpu_model=$(grep "model name" /proc/cpuinfo 2>/dev/null | head -1 | cut -d: -f2 | sed 's/^[ \t]*//')
+    local cpu_cores; cpu_cores=$(grep -c "^processor" /proc/cpuinfo 2>/dev/null)
+    local cpu_usage; cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{printf "%.2f", 100 - $1}')
+    local load_avg; load_avg=$(uptime | awk -F'load average:' '{print $2}' | sed 's/^[ \t]*//')
     
     if [ -z "$cpu_model" ]; then
         cpu_model="N/A"
@@ -80,12 +80,12 @@ get_cpu_info() {
 # Function to get memory information
 get_memory_info() {
     if command -v free &> /dev/null; then
-        local mem_total=$(free -h | awk 'NR==2{print $2}')
-        local mem_used=$(free -h | awk 'NR==2{print $3}')
-        local mem_free=$(free -h | awk 'NR==2{print $4}')
-        local mem_usage=$(free | awk 'NR==2{printf "%.2f", $3*100/$2}')
-        local swap_total=$(free -h | awk 'NR==3{print $2}')
-        local swap_used=$(free -h | awk 'NR==3{print $3}')
+        local mem_total; mem_total=$(free -h | awk 'NR==2{print $2}')
+        local mem_used; mem_used=$(free -h | awk 'NR==2{print $3}')
+        local mem_free; mem_free=$(free -h | awk 'NR==2{print $4}')
+        local mem_usage; mem_usage=$(free | awk 'NR==2{printf "%.2f", $3*100/$2}')
+        local swap_total; swap_total=$(free -h | awk 'NR==3{print $2}')
+        local swap_used; swap_used=$(free -h | awk 'NR==3{print $3}')
         
         echo "MEM_TOTAL|$mem_total"
         echo "MEM_USED|$mem_used"
@@ -144,9 +144,9 @@ get_network_info() {
 
 # Function to format output as table
 format_table() {
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    local hostname=$(hostname)
-    local uptime_str=$(uptime -p 2>/dev/null || uptime | awk '{print $3, $4}')
+    local timestamp; timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    local hostname; hostname=$(hostname)
+    local uptime_str; uptime_str=$(uptime -p 2>/dev/null || uptime | awk '{print $3, $4}')
     
     echo -e "${BLUE}╔════════════════════════════════════════════════════════════════╗${NC}"
     echo -e "${BLUE}║          SYSTEM RESOURCE REPORT                                ║${NC}"
@@ -204,8 +204,8 @@ format_table() {
 
 # Function to format output as JSON
 format_json() {
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    local hostname=$(hostname)
+    local timestamp; timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    local hostname; hostname=$(hostname)
     local sections=()
     
     echo "{"
@@ -323,8 +323,8 @@ format_json() {
 
 # Function to format output as CSV
 format_csv() {
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    local hostname=$(hostname)
+    local timestamp; timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    local hostname; hostname=$(hostname)
     
     if [ "$SHOW_CPU" = true ]; then
         echo "Section,Metric,Value"

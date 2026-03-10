@@ -32,7 +32,7 @@ EXPIRY_EPOCH=$(date -d "$EXPIRY_DATE" +%s 2>/dev/null || date -j -f "%b %d %T %Y
 CURRENT_EPOCH=$(date +%s)
 
 # Calculate days until expiration
-DAYS_UNTIL_EXPIRY=$(( ($EXPIRY_EPOCH - $CURRENT_EPOCH) / 86400 ))
+DAYS_UNTIL_EXPIRY=$(( (EXPIRY_EPOCH - CURRENT_EPOCH) / 86400 ))
 
 # Display results
 echo "Certificate expiration date: $EXPIRY_DATE"

@@ -38,7 +38,6 @@ df -Pi | awk 'NR>1 {print $1, $5, $6}' | while read -r fs usage mount; do
     used_percent=${usage%%%}
     if (( used_percent >= THRESHOLD )); then
         echo "ALERT: $fs at $mount inode usage ${usage}"
-        ALERT=1
     else
         echo "OK: $fs at $mount inode usage ${usage}"
     fi

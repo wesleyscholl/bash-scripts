@@ -8,7 +8,7 @@ if ! git rev-parse --git-dir > /dev/null 2>&1; then
 fi
 
 # Repository name
-REPO_NAME=$(basename `git rev-parse --show-toplevel`)
+REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
 
 echo "====================================="
 echo "Git Repository Statistics"
@@ -21,7 +21,7 @@ TOTAL_COMMITS=$(git rev-list --all --count)
 echo "Total commits: $TOTAL_COMMITS"
 
 # Number of branches
-BRANCH_COUNT=$(git branch -a | grep -v HEAD | wc -l)
+BRANCH_COUNT=$(git branch -a | grep -vc HEAD)
 echo "Total branches: $BRANCH_COUNT"
 
 # Number of contributors

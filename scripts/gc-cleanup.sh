@@ -1,5 +1,5 @@
-# Script run garbage collection 
 #!/bin/bash
+# Script run garbage collection
 
 # Run git gc prune - remove objects that are no longer pointed to by any object
 git gc --prune=now

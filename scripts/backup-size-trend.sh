@@ -29,4 +29,4 @@ if [[ ! -d "$BACKUP_DIR" ]]; then
 fi
 
 echo "Largest backup files in $BACKUP_DIR"
-find "$BACKUP_DIR" -maxdepth 1 -type f | xargs -r du -h 2>/dev/null | sort -hr | head -n "$TOP_N"
+find "$BACKUP_DIR" -maxdepth 1 -type f -print0 | xargs -r0 du -h 2>/dev/null | sort -hr | head -n "$TOP_N"
